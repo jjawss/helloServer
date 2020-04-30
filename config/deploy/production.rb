@@ -21,6 +21,14 @@
 # role :web, %w{user1@primary.com user2@additional.com}, other_property: :other_value
 # role :db,  %w{deploy@example.com}
 
+role :app, %w{deploy_user@ec2-3-22-95-35.us-east-2.compute.amazonaws.com}
+role :web, %w{deploy_user@ec2-3-22-95-35.us-east-2.compute.amazonaws.com}
+role :db,  %w{deploy_user@ec2-3-22-95-35.us-east-2.compute.amazonaws.com}
+set :ssh_options, {
+   keys: %w(/Users/davidjaworski/Downloads/DavidJaworski1.pem),
+   forward_agent: false,
+   auth_methods: %w(publickey password)
+ }
 
 
 # Configuration
