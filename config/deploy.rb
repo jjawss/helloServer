@@ -8,6 +8,15 @@ set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', '
 set :rvm_ruby_version, '2.6.1'
 set :passenger_restart_with_touch, true
 
+set :branch, "master"
+
+set :user, "deploy_user"
+set :scm_passphrase, "password"
+
+set :bundle_path, nil
+set :bundle_jobs, 4
+set :bundle_without, nil
+set :bundle_flags, nil
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp

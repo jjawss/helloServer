@@ -21,12 +21,12 @@
 # role :web, %w{user1@primary.com user2@additional.com}, other_property: :other_value
 # role :db,  %w{deploy@example.com}
 
-role :app, %w{deploy_user@3.134.100.10}
-role :web, %w{deploy_user@3.134.100.10}
-role :db,  %w{deploy_user@3.134.100.10}
+role :app, %w{deploy_user@3.18.213.181}
+role :web, %w{deploy_user@3.18.213.181}
+role :db,  %w{deploy_user@3.18.213.181}
 set :ssh_options, {
    keys: %w(~/.ssh/DavidJaworski1.pem),
-   forward_agent: false,
+   forward_agent: true,
    auth_methods: %w(publickey password)
    # password: 'please use keys'
  }
