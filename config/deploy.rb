@@ -13,10 +13,32 @@ set :branch, "master"
 set :user, "deploy_user"
 set :scm_passphrase, "password"
 
-set :bundle_path, nil
-set :bundle_jobs, 4
-set :bundle_without, nil
-set :bundle_flags, nil
+# set :bundle_gemfile, "hello_server/Gemfile"
+
+set :bundle_flags,      '--quiet' # this unsets --deployment, see details in config_bundler task details
+set :bundle_path,       nil
+set :bundle_without,    nil
+
+namespace :deploy do
+  desc 'Config bundler'
+  task :config_bundler do
+    on roles(/.*/) do
+      execute :bundle, :config, '--local deployment true'
+      execute :bundle, :config, '--local without "development test"'
+      execute :bundle, :config, "--local path #{shared_path.join('bundle')}"
+    end
+  end
+end
+
+before 'bundler:install', 'deploy:config_bundler'
+
+# set :bundle_flags, --quiet
+# set deploy_to, "/var/www/hello_server"
+
+# set :bundle_path, nil
+# set :bundle_jobs, 4
+# set :bundle_without, nil
+# set :bundle_flags, nil
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
